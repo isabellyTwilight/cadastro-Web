@@ -24,17 +24,10 @@ public class EstudanteController {
     }
     @PostMapping("/estudantes/confirmar")
     public String confirmar (
-            @RequestParam String nome,
-            @RequestParam String email,
-            Model model){
-        model.addAttribute("nome", nome);
-        model.addAttribute("email", email);
-        return "estudantes/confirmacao";
-
-    }
-    @PostMapping("/estudantes/confirmar")
-    public String confirmar(
             @ModelAttribute Estudante estudante,
             Model model) {
         model.addAttribute("estudante", estudante);
+        return "estudantes/confirmacao";
+    }
+
 }
