@@ -27,4 +27,8 @@ public record Estudante(
                 turno,
                 participaProjeto);
         }
+
+    public boolean observacoes() {
+        return false;
+    }
 }
