@@ -9,7 +9,8 @@
 </head>
 <body>
     <h1>Novo estudante</h1>
-    <form method="post" action="/estudantes/confirmar" class="quadrado">
+    <form method="post" action="/estudantes" class="quadrado">
+        <input type="hidden" name="id" value="0">
         <div class="linha1">
         <label for="nome" >Nome</label>
         <input type="text" id="nome" name="nome">

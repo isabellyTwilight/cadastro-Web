@@ -6,15 +6,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
 public class EstudanteController {
+    private final List<Estudante> estudantes = new ArrayList<>();
+    private Integer proximoID= 1;
 
     @GetMapping("/")
     public String inicio(Model model){
-        model.addAttribute("totalDEestudantes", 0);
+        model.addAttribute("totalDEestudantes", estudantes.size());
         return "index";
 
   }
@@ -22,12 +25,17 @@ public class EstudanteController {
     public String novo() {
         return "estudantes/formulario";
     }
-    @PostMapping("/estudantes/confirmar")
-    public String confirmar (
-            @ModelAttribute Estudante estudante,
-            Model model) {
-        model.addAttribute("estudante", estudante);
-        return "estudantes/confirmacao";
+
+    @PostMapping("/estudantes")
+    public String cadastrar(@ModelAttribute Estudante estudante) {
+        estudantes.add(estudante.comId(proximoID++));
+        return "redirect:/listar";
+    }
+
+    @GetMapping("/listar")
+    public String listar (Model model) {
+        model.addAttribute("estudantes", estudantes);
+        return "estudantes/lista";
     }
 
 }
